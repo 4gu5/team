@@ -19,7 +19,8 @@ class Data extends CI_Controller {
 		foreach ($list as $key => $value) {
 			$data[]=array(
 				"judul" => $value['judul'],
-				"deskripsi" => $value['description']
+				"deskripsi" => $value['description'],
+				"id_list" => $value['id_list'],
 			);
 		}
 		echo json_encode($data);
