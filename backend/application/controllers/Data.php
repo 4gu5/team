@@ -36,4 +36,15 @@ class Data extends CI_Controller {
 			 echo json_encode(array("gagal" => true));
 		}
 	}
+
+	public function delete_list($id)
+	{
+		$delete=$this->data_model->proses_delete($id);
+		if($delete)
+		{
+			 echo json_encode(array("sukses" => true));
+		}else{
+			 echo json_encode(array("gagal" => true));
+		}
+	}
 }

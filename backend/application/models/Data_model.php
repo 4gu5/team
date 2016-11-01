@@ -24,4 +24,13 @@ class Data_model extends CI_Model {
 			return false;
 		}		
 	}
+
+	public function proses_delete($id){
+		$this->db->delete('list', array('id_list'=>$id));	
+		if($this){
+			return true;
+		}else{
+			return false;
+		}	
+	}
 }
