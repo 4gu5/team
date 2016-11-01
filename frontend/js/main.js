@@ -1,23 +1,5 @@
 $(document).ready(function() {
-    // $('#btn_login').click(function() {
-    //     //console.log(form_data);
-    //     $.ajax({
-    //         type:"POST",
-    //         url:'http://localhost/todo-list/welcome/login',
-    //         data:form_data,
-    //         success:function(data) {
-    //             console.log(data);
-    //             // if(data.sukses) {
-    //             //     console.log(data);
-    //             //     //$location.path('http://localhost/todo-list/todo')
-    //             // }
-    //             // else {
-    //             //     //alert('username/password salah');
-    //             // }
-    //         }
-    //     });
-    // });
-
+    
     $('#form_login').submit(function(event) {
         var form_data = {
             'username' : $('#username').val(),
@@ -26,15 +8,14 @@ $(document).ready(function() {
 
         $.ajax({
             type        : 'POST',
-            url         : 'http://localhost/todo-list/welcome/login',
+            url         : 'http://localhost/team/backend/login',
             data        : form_data,
             dataType    : 'json',
             encode      : true,
             success:function(data) {
                 if(data.sukses) {
-                    alert('yey');
                     // $location.path('http://localhost/todo-list/todo');
-                    // window.location.href = "http://localhost/todo-list/todo";
+                    window.location.href = "http://localhost/team/frontend/todo.html";
                 }
                 else {
                     alert('username/password salah');
@@ -44,4 +25,5 @@ $(document).ready(function() {
 
         event.preventDefault();
     });
+
 });
