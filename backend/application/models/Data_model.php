@@ -11,4 +11,17 @@ class Data_model extends CI_Model {
 		$query = $this->db->get('list');
 		return $query->result_array();		
 	}
+
+	public function proses_input(){
+		$data=array(
+			'judul' => $this->input->post('todolist'),
+			'description' => $this->input->post('description')
+		);
+		$this->db->insert('list', $data);
+		if($this){
+			return true;
+		}else{
+			return false;
+		}		
+	}
 }

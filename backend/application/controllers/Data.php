@@ -24,4 +24,15 @@ class Data extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
+
+	public function input_list()
+	{
+		$input=$this->data_model->proses_input();
+		if($input)
+		{
+			 echo json_encode(array("sukses" => true));
+		}else{
+			 echo json_encode(array("gagal" => true));
+		}
+	}
 }
