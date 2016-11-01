@@ -26,8 +26,8 @@ class Data_model extends CI_Model {
 	}
 
 	public function proses_delete($id){
-		$this->db->delete('list', array('id_list'=>$id));	
-		if($this){
+		if(is_numeric($id)){
+			$this->db->delete('list', array('id_list'=>$id));
 			return true;
 		}else{
 			return false;
