@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     function getTodo() {
-        $('#get_list').html('');
+        $('#get_list').empty();
 
         $.ajax({
             url: 'http://localhost/team/backend/jsondata',
@@ -9,7 +9,7 @@ $(document).ready(function() {
             success: function(data) {
                 var json = $.parseJSON(data);
                 for (var i = 0; i < json.length; ++i) {
-                    $('#get_list').append('<div class=\"col-md-3 list\"><div class=\"panel panel-default\"><div class=\"panel-heading\"><div class=\"row\"><div class=\"col-md-8\">'+json[i].judul+'</div><div class=\"col-md-4\"><button type=\"button\" class=\"close\" data-id=\"'+json[i].id_list+'\"><span>&times;</span></button></div></div></div><div class=\"panel-body\">'+json[i].deskripsi+'</div></div></div>');
+                    $('#get_list').append('<div class=\"col-md-3 list\"><div class=\"panel panel-default\"><div class=\"panel-heading\"><div class=\"row\"><div class=\"col-md-8\">'+json[i].judul+'</div><div class=\"col-md-4\"><button type=\"button\" class=\"close close_todo\" data-id=\"'+json[i].id_list+'\"><span>&times;</span></button></div></div></div><div class=\"panel-body\">'+json[i].deskripsi+'</div></div></div>');
                 }
                 hapus_todo();
             }
@@ -35,7 +35,8 @@ $(document).ready(function() {
                     window.location.href = "http://localhost/team/frontend/todo.html";
                 }
                 else {
-                    alert('username/password salah');
+                    $('#message').html($('#gagal_message').html());
+                    $("#form_login").trigger('reset');
                 }
             }
         });
@@ -53,6 +54,7 @@ $(document).ready(function() {
             success:function(data) {
                 getTodo();
                 $("#form_list").trigger('reset');
+                $('#message').html($('#berhasil_message').html());
             }
         });
 
@@ -60,7 +62,7 @@ $(document).ready(function() {
     });
 
     function hapus_todo() {
-        $(".close").click(function() {
+        $(".close_todo").click(function() {
             var id = $(this).data('id');
             if (confirm("Yakin mau dihapus?")) {
                 $.ajax({
@@ -69,6 +71,7 @@ $(document).ready(function() {
                     data: '',
                     success: function(data) {
                         getTodo();
+                        $('#message').html($('#hapus_message').html());
                     }
                 });
             }
